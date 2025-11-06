@@ -3,6 +3,7 @@ import varDump from '../classifier/classifier';
 import call_rest_api from '../RestApi/RestApi';
 import TaskEditDialog from '../Components/TaskEditDialog/TaskEditDialog';
 import {SnackBar, snackBarError} from '../Components/SnackBar/SnackBar';
+import { sanitizeTaskDescription } from '../utils/inputSanitization';
 
 
 import React, { useState, useEffect, useContext } from 'react'
@@ -235,7 +236,7 @@ const DayView = (date) => {
         // event.target.value contains the new text from description which is retained in state
         // updated changes are written to rest API elsewhere (keyup for example)
         let newTasksArray = [...tasksArray]
-        newTasksArray[taskIndex].description = event.target.value;
+        newTasksArray[taskIndex].description = sanitizeTaskDescription(event.target.value);
         setTasksArray(newTasksArray);
     }
 
@@ -244,11 +245,6 @@ const DayView = (date) => {
         // Enter key triggers save, but Enter itself cannot be part of task.description hence preventDefault
         if (event.key === 'Enter') {
             updateTask(event, taskIndex, taskId);
-            event.preventDefault();
-        }
-
-        // hack around: not escaping single parens so disallow for now
-        if (event.key === "'") {
             event.preventDefault();
         }
     }

@@ -6,6 +6,7 @@ import TaskEdit from '../Components/TaskEdit/TaskEdit';
 import TaskDeleteDialog from '../Components/TaskDeleteDialog/TaskDeleteDialog';
 import call_rest_api from '../RestApi/RestApi';
 import {SnackBar, snackBarError} from '../Components/SnackBar/SnackBar';
+import { sanitizeTaskDescription } from '../utils/inputSanitization';
 
 import AuthContext from '../Context/AuthContext.js'
 import AppContext from '../Context/AppContext';
@@ -213,7 +214,7 @@ const TaskCard = ({area, areaIndex, domainId, areaChange, areaKeyDown, areaOnBlu
         // event.target.value contains the new text from description which is retained in state
         // updated changes are written to rest API elsewhere (keydown for example)
         let newTasksArray = [...tasksArray]
-        newTasksArray[taskIndex].description = event.target.value;
+        newTasksArray[taskIndex].description = sanitizeTaskDescription(event.target.value);
         setTasksArray(newTasksArray);
     }
 
@@ -222,11 +223,6 @@ const TaskCard = ({area, areaIndex, domainId, areaChange, areaKeyDown, areaOnBlu
         // Enter key triggers save, but Enter itself cannot be part of task.description hence preventDefault
         if (event.key === 'Enter') {
             updateTask(event, taskIndex, taskId);
-            event.preventDefault();
-        }
-
-        // hack around: not escaping single parens so disallow for now
-        if (event.key === "'") {
             event.preventDefault();
         }
     }

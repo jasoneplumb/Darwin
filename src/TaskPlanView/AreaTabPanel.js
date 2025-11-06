@@ -5,6 +5,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import call_rest_api from '../RestApi/RestApi';
 import TaskCard from './TaskCard';
 import {SnackBar, snackBarError} from '../Components/SnackBar/SnackBar';
+import { sanitizeAreaName } from '../utils/inputSanitization';
 
 import CardCloseDialog from '../Components/CardClose/CardCloseDialog';
 
@@ -105,18 +106,13 @@ const AreaTabPanel = ( { domain, domainIndex } ) => {
         // event.target.value contains the new area text
         // updated changes are written to rest API elsewhere (keydown for example)
         let newAreasArray = [...areasArray]
-        newAreasArray[areaIndex].area_name = event.target.value;
+        newAreasArray[areaIndex].area_name = sanitizeAreaName(event.target.value);
         setAreasArray(newAreasArray);
     }
 
     const areaKeyDown = (event, areaIndex, areaId) => {
         if (event.key === 'Enter') {
             updateArea(event, areaIndex, areaId);
-            event.preventDefault();
-        }
-
-        // hack around: not escaping single parens so disallow for now
-        if (event.key === "'") {
             event.preventDefault();
         }
     }
