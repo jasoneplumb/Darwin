@@ -7,7 +7,7 @@ export const AppContextProvider = ({ children }) => {
 
     console.count('AppContext initilialized');
 
-    const [darwinUri, setDarwinUri] = useState('https://k5j0ftr527.execute-api.us-west-1.amazonaws.com/eng/darwin');
+    const [darwinUri, setDarwinUri] = useState(process.env.REACT_APP_API_URL || 'https://k5j0ftr527.execute-api.us-west-1.amazonaws.com/eng/darwin');
 
     return (
         <AppContext.Provider value={{
