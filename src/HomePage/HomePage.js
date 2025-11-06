@@ -14,8 +14,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const HomePage = () => {
 
-    console.count('HomePage Render');
-
     const { idToken, } = useContext(AuthContext);
     //eslint-disable-next-line no-unused-vars
     const [cookie, setCookie] = useCookies(['idToken', 'accessToken', 'profile']);
@@ -24,8 +22,6 @@ const HomePage = () => {
     useEffect( () => {
 
         // generate CSRF token for login and store in a cookie w/60m expiry
-        console.count('generate CSRF in HomePage');
-
         var csrf = cryptoRandomString({length: 64, type: 'alphanumeric'});
         setGeneratedCsrf(csrf);
         setCookie('csrfToken', csrf, { path: '/', maxAge: 3600 });

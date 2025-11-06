@@ -37,12 +37,8 @@ const TaskCard = ({area, areaIndex, domainId, areaChange, areaKeyDown, areaOnBlu
     const [deleteConfirmed, setDeleteConfirmed] = useState(false);
     const [deleteId, setDeleteId] = useState({});
 
-    console.count(`Render card for area ${area.id}`)
-
     // READ Task API data for card
     useEffect( () => {
-
-        console.count('useEffect: read task API data for a given area');
 
         // FETCH TASKS: filter for creator, done=0 and area.id
         // QSPs limit fields to minimum: id,priority,done,description,area_fk
@@ -81,7 +77,6 @@ const TaskCard = ({area, areaIndex, domainId, areaChange, areaKeyDown, areaOnBlu
 
     // DELETE TASK in cooperation with confirmation dialog
     useEffect( () => {
-        console.count('useEffect: delete task');
 
         //TODO confirm deleteId is a valid object
         if (deleteConfirmed === true) {

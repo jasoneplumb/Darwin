@@ -5,7 +5,6 @@ import { useCookies } from 'react-cookie';
 
 const LogoutLink = () => {
 
-    console.count('logout link called');
     // Logout Link provides a mechanism for HomePage to clear all authentication cookies
     // and logout via cognito
 

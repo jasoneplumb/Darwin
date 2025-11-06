@@ -20,8 +20,6 @@ import AreaEditTabPanel from './AreaEditTabPanel';
 
 const AreaEdit = () => {
 
-    console.count('AreaEdit rendered');
-
     const { idToken, profile } = useContext(AuthContext);
     const { darwinUri } = useContext(AppContext);
 
@@ -53,8 +51,6 @@ const AreaEdit = () => {
     // READ domains API data for page
     useEffect( () => {
 
-        console.count('useEffect: Read domains REST API data');
-
         // FETCH DOMAINS
         // QSPs limit fields to minimum: id,domain_name
         let domainUri = `${darwinUri}/domains?creator_fk=${profile.userName}&closed=0&fields=id,domain_name`
@@ -73,7 +69,6 @@ const AreaEdit = () => {
 
     // CLOSE DOMAIN in cooperation with confirmation dialog
     useEffect( () => {
-        console.count('useEffect: close Domain');
 
         //TODO confirm areaCloseId is a valid object
         if (domainCloseConfirmed === true) {
@@ -109,7 +104,6 @@ const AreaEdit = () => {
 
     // ADD NEW DOMAIN in cooperation with confirmation dialog
     useEffect( () => {
-        console.count('useEffect: Add New Domain');
 
         //TODO confirm areaCloseId is a valid object
         if (domainAddConfirmed === true) {

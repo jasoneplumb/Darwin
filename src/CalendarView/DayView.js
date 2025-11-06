@@ -103,7 +103,6 @@ const DayView = (date) => {
 
     // DELETE TASK in cooperation with confirmation dialog
     useEffect( () => {
-        console.count('useEffect: delete task');
 
         //TODO confirm deleteId is a valid object
         if (deleteConfirmed === true) {

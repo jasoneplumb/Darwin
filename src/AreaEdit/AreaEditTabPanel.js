@@ -42,8 +42,6 @@ const AreaEditTabPanel = ( { domain, domainIndex } ) => {
     // READ AREA API data for TabPanel
     useEffect( () => {
 
-        console.count('useEffect: read all Rest API data');
-
         let areaUri = `${darwinUri}/areas?creator_fk=${profile.userName}&domain_fk=${domain.id}&fields=id,area_name,closed,sort_order`;
 
         call_rest_api(areaUri, 'GET', '', idToken)
@@ -86,7 +84,6 @@ const AreaEditTabPanel = ( { domain, domainIndex } ) => {
 
     // DELETE AREA in cooperation with confirmation dialog
     useEffect( () => {
-        console.count('useEffect: delete area');
 
         if (areaDeleteConfirmed === true) {
             const { areaId } = areaInfo;

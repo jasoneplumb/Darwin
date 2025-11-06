@@ -10,7 +10,6 @@ import PedalBikeIcon from '@mui/icons-material/PedalBike';
 import Stack from '@mui/material/Stack';
 
 const NavBar = () => {
-    console.count('Navbar render');
     const { idToken } = useContext(AuthContext);
 
   return (

@@ -37,8 +37,6 @@ const AreaTabPanel = ( { domain, domainIndex } ) => {
     // READ AREA API data for TabPanel
     useEffect( () => {
 
-        console.count('useEffect: read all Rest API data');
-
         let areaUri = `${darwinUri}/areas?creator_fk=${profile.userName}&closed=0&domain_fk=${domain.id}&fields=id,area_name,domain_fk,sort_order,creator_fk`;
 
         call_rest_api(areaUri, 'GET', '', idToken)
@@ -71,7 +69,6 @@ const AreaTabPanel = ( { domain, domainIndex } ) => {
 
     // CLOSE AREA in cooperation with confirmation dialog
     useEffect( () => {
-        console.count('useEffect: close Area');
 
         //TODO confirm areaCloseId is a valid object
         if (areaCloseConfirmed === true) {

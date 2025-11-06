@@ -15,7 +15,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 function  LoggedIn() {
 
-    console.count('LoggedIn Render');
     const { idToken, setIdToken, 
             setAccessToken, 
             profile, setProfile, } = useContext(AuthContext);

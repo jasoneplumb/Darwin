@@ -10,9 +10,7 @@ const CalendarView = () => {
 
     const [dateArray, setDateArray] = useState([])
 
-    useEffect( () => {   
-        
-        console.count('CalendarView useEffect');
+    useEffect( () => {
 
         // number of days displayed in the calendar, not including current week
         var displayDays = 28;

@@ -21,8 +21,6 @@ import { CircularProgress, Tabs } from '@mui/material';
 
 const TaskPlanView = () => {
 
-    console.count('TaskCardContent rendered');
-
     const { idToken, profile } = useContext(AuthContext);
     const { darwinUri } = useContext(AppContext);
 
@@ -54,8 +52,6 @@ const TaskPlanView = () => {
     // READ domains API data for page
     useEffect( () => {
 
-        console.count('useEffect: Read domains REST API data');
-
         let domainUri = `${darwinUri}/domains?creator_fk=${profile.userName}&closed=0&fields=id,domain_name`
 
         call_rest_api(domainUri, 'GET', '', idToken)
@@ -72,7 +68,6 @@ const TaskPlanView = () => {
 
     // CLOSE DOMAIN in cooperation with confirmation dialog
     useEffect( () => {
-        console.count('useEffect: close Domain');
 
         //TODO confirm areaCloseId is a valid object
         if (domainCloseConfirmed === true) {
@@ -109,7 +104,6 @@ const TaskPlanView = () => {
 
     // ADD NEW DOMAIN in cooperation with confirmation dialog
     useEffect( () => {
-        console.count('useEffect: Add New Domain');
 
         if (domainAddConfirmed === true) {
 

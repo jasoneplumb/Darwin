@@ -9,8 +9,6 @@ import Typography from '@mui/material/Typography';
 
 const Profile = () => {
 
-    console.count('Profile Render');
-
     const { profile } = useContext(AuthContext);
     
     return (

@@ -9,8 +9,6 @@ const AuthContext = createContext({});
 // Context Provider for Authorization, Login and Profiles
 export const AuthContextProvider = ({ children }) => {
 
-    console.count('AuthContext initilialized');
-
     const [cookies] = useCookies(['idToken', 'accessToken', 'profile']);
 
     // Set initial values by directly reading the cookie, this defeats the race condition of
@@ -23,7 +21,6 @@ export const AuthContextProvider = ({ children }) => {
 
     useEffect( () => {
 
-        console.count('Auth Context load via useEffect')
         // UseEffect checks and retrieves idToken from cookie. Is called if cookie or state changes.
         // Page level behavior:
         // idToken === '' - didn't evaluate cookie token yet, so display blank/wait spinner

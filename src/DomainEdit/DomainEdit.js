@@ -45,8 +45,6 @@ const DomainEdit = ( { domain, domainIndex } ) => {
     // READ domains API data for page
     useEffect( () => {
 
-        console.count('useEffect: Read domains REST API data');
-
         // FETCH DOMAINS
         // QSPs limit fields to minimum: id,domain_name
         let domainUri = `${darwinUri}/domains?creator_fk=${profile.userName}&fields=id,domain_name,closed`
@@ -84,7 +82,6 @@ const DomainEdit = ( { domain, domainIndex } ) => {
 
     // DELETE DOMAIN in cooperation with confirmation dialog
     useEffect( () => {
-        console.count('useEffect: delete domain');
 
         if (domainDeleteConfirmed === true) {
             const { domainId } = domainInfo;
