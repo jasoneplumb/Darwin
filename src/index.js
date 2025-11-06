@@ -1,5 +1,6 @@
 import './index.css';
 import AuthenticatedRoute from './Components/AuthenticatedRoute/AuthenticatedRoute';
+import ErrorBoundary from './Components/ErrorBoundary/ErrorBoundary';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -26,40 +27,42 @@ import LogoutLink from './Components/LogoutLink/LogoutLink';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <CookiesProvider>
-    <AuthContextProvider>
-      <AppContextProvider>
-        <DndProvider backend={HTML5Backend}>  
-          <Router >
-            <div className="app-layout">
-              <Routes>
-                <Route path="/"                element= {<App />} >
-                    <Route index               element= {<HomePage />} />
-                    <Route path="login"        element= {<LoginLink/>} />
-                    <Route path="logout"       element= {<LogoutLink/>} />
-                    <Route path="loggedin"     element= {<LoggedIn />} />
-                    <Route path="taskcards"    element= {<AuthenticatedRoute>
-                                                             <TaskPlanView />
-                                                         </AuthenticatedRoute>} />
-                    <Route path="calview"      element= {<AuthenticatedRoute>
-                                                             <CalendarView />
-                                                         </AuthenticatedRoute>} />
-                    <Route path="areaedit"     element= {<AuthenticatedRoute>
-                                                             <AreaEdit />
-                                                         </AuthenticatedRoute>} />
-                    <Route path="domainedit"   element= {<AuthenticatedRoute>
-                                                             <DomainEdit />
-                                                         </AuthenticatedRoute>} />
-                    <Route path="profile"      element= {<AuthenticatedRoute>
-                                                             <Profile />
-                                                         </AuthenticatedRoute>} />
-                </Route >
-                <Route path="*"                element= {<Error404 />} />
-              </Routes>
-            </div>
-          </Router>
-        </DndProvider>  
-      </AppContextProvider>  
-    </AuthContextProvider>
-  </CookiesProvider>
+  <ErrorBoundary>
+    <CookiesProvider>
+      <AuthContextProvider>
+        <AppContextProvider>
+          <DndProvider backend={HTML5Backend}>
+            <Router >
+              <div className="app-layout">
+                <Routes>
+                  <Route path="/"                element= {<App />} >
+                      <Route index               element= {<HomePage />} />
+                      <Route path="login"        element= {<LoginLink/>} />
+                      <Route path="logout"       element= {<LogoutLink/>} />
+                      <Route path="loggedin"     element= {<LoggedIn />} />
+                      <Route path="taskcards"    element= {<AuthenticatedRoute>
+                                                               <TaskPlanView />
+                                                           </AuthenticatedRoute>} />
+                      <Route path="calview"      element= {<AuthenticatedRoute>
+                                                               <CalendarView />
+                                                           </AuthenticatedRoute>} />
+                      <Route path="areaedit"     element= {<AuthenticatedRoute>
+                                                               <AreaEdit />
+                                                           </AuthenticatedRoute>} />
+                      <Route path="domainedit"   element= {<AuthenticatedRoute>
+                                                               <DomainEdit />
+                                                           </AuthenticatedRoute>} />
+                      <Route path="profile"      element= {<AuthenticatedRoute>
+                                                               <Profile />
+                                                           </AuthenticatedRoute>} />
+                  </Route >
+                  <Route path="*"                element= {<Error404 />} />
+                </Routes>
+              </div>
+            </Router>
+          </DndProvider>
+        </AppContextProvider>
+      </AuthContextProvider>
+    </CookiesProvider>
+  </ErrorBoundary>
 );
